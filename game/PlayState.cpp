@@ -19,37 +19,14 @@ using namespace std;
 
 void PlayState::init()
 {
-    if (!font.loadFromFile("data/fonts/arial.ttf")) {
-        cout << "Cannot load arial.ttf font!" << endl;
-        exit(1);
-    }
-    text.setFont(font);
-    text.setString(L"Testing text output in SFML");
-    text.setCharacterSize(24); // in pixels
-    text.setColor(sf::Color::Yellow);
-    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
     map = new tmx::MapLoader("data/maps");       // all maps/tiles will be read from data/maps
     // map->AddSearchPath("data/maps/tilesets"); // e.g.: adding more search paths for tilesets
-    map->Load("dungeon-tilesets2.tmx");
-    //map->Load("labirinto.tmx");
+    //map->Load("dungeon-tilesets2.tmx");
+    map->Load("castle.tmx");
     //map->Load("mundi.tmx");
 
-    walkStates[0] = "walk-right";
-    walkStates[1] = "walk-left";
-    walkStates[2] = "walk-up";
-    walkStates[3] = "walk-down";
-    currentDir = RIGHT;
-    player.load("data/img/warrior.png",64,64,0,0,0,0,13,21,273);
-    player.setPosition(40,100);
-    player.loadAnimation("data/img/warrioranim.xml");
-    player.setAnimation(walkStates[currentDir]);
-    player.setAnimRate(30);
-    player.setScale(1,1);
-    player.play();
-
-    dirx = 0; // sprite dir: right (1), left (-1)
-    diry = 0; // down (1), up (-1)
+    player = new Player();
 
     im = cgf::InputManager::instance();
 
@@ -59,6 +36,7 @@ void PlayState::init()
     im->addKeyInput("down", sf::Keyboard::Down);
     im->addKeyInput("quit", sf::Keyboard::Escape);
     im->addKeyInput("stats", sf::Keyboard::S);
+    im->addKeyInput("space", sf::Keyboard::Space);
     im->addMouseInput("rightclick", sf::Mouse::Right);
 
     // Camera control
@@ -96,27 +74,26 @@ void PlayState::handleEvents(cgf::Game* game)
             game->quit();
     }
 
-    dirx = diry = 0;
-    int newDir = currentDir;
 
     if(im->testEvent("left")) {
-        dirx = -1;
-        newDir = LEFT;
+        player->walk(Player::LEFT, im->testEvent("space"));
     }
 
-    if(im->testEvent("right")) {
-        dirx = 1;
-        newDir = RIGHT;
+    else if(im->testEvent("right")) {
+        player->walk(Player::RIGHT, im->testEvent("space"));
     }
 
-    if(im->testEvent("up")) {
-        diry = -1;
-        newDir = UP;
+    else if(im->testEvent("up")) {
+        player->walk(Player::UP, im->testEvent("space"));
     }
 
-    if(im->testEvent("down")) {
-        diry = 1;
-        newDir = DOWN;
+    else if(im->testEvent("down")) {
+        player->walk(Player::DOWN, im->testEvent("space"));
+    }
+
+    else{
+        player->walk(-1, false);
+
     }
 
     if(im->testEvent("quit") || im->testEvent("rightclick"))
@@ -125,6 +102,7 @@ void PlayState::handleEvents(cgf::Game* game)
     if(im->testEvent("stats"))
         game->toggleStats();
 
+    /*
     if(im->testEvent("zoomin")) {
         view.zoom(1.01);
         screen->setView(view);
@@ -132,38 +110,25 @@ void PlayState::handleEvents(cgf::Game* game)
     else if(im->testEvent("zoomout")) {
         view.zoom(0.99);
         screen->setView(view);
-    }
+    }*/
 
-    if(dirx == 0 && diry == 0) {
-        player.pause();
-    }
-    else {
-        if(currentDir != newDir) {
-            player.setAnimation(walkStates[newDir]);
-            currentDir = newDir;
-        }
-        player.play();
-    }
-
-    player.setXspeed(100*dirx);
-    player.setYspeed(100*diry);
 }
 
 void PlayState::update(cgf::Game* game)
 {
     screen = game->getScreen();
-    checkCollision(2, game, &player);
-//    player.update(game->getUpdateInterval());
+    cgf::Sprite * p = player;
+    checkCollision(3, game, p);
     centerMapOnPlayer();
+
 }
 
 void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
     map->Draw(*screen);          // draw all layers
-//    map->Draw(*screen, 1);     // draw only the second layer
-    screen->draw(player);
-    screen->draw(text);
+    //map->Draw(*screen, 1);     // draw only the second layer
+    screen->draw(*player);
 }
 
 void PlayState::centerMapOnPlayer()
@@ -173,7 +138,7 @@ void PlayState::centerMapOnPlayer()
     sf::Vector2f viewsize = view.getSize();
     viewsize.x /= 2;
     viewsize.y /= 2;
-    sf::Vector2f pos = player.getPosition();
+    sf::Vector2f pos = player->getPosition();
 
     float panX = viewsize.x; // minimum pan
     if(pos.x >= viewsize.x)

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="32" tileheight="32" nextobjectid="21">
+ <tileset firstgid="1" name="CASTLE1" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="CASTLE1.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="CASTLE2" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="CASTLE2.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Ground" width="64" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKHL9v1DLcdAwVVTVVVVVVVVVV8/L1oQHw==
+  </data>
+ </layer>
+ <layer name="Winning" width="64" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztw6ENAAAIA7D9fxw34edQmDZpAgAAAAAAAABcTf223D8DOQ==
+  </data>
+ </layer>
+ <layer name="Fake Walls" width="64" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt2EEOgCAMRNF6Bc+A97+iK2MkVKYU3Phfwk6gm6Ggmdm+fTMuq74frQfATc2LmtfoftG6yDuwXknmujWOl3W8/cg9ME8vj16eSie/3vzMUOrjHADGrb5fq/1cqStyHgDw1f181vveW1+VvR9k9wf+ZDRfrfm9/hzJo3oe0f+BvOz7XM2fN7/+/xdZp/Ud/R94OgHfkBbo
+  </data>
+ </layer>
+ <layer name="Walls" width="64" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztWG0OgjAMFdEDGPEAhhOgd9D738gR/2Dt9vroNiBhSROSdv1AX/vKpTlUO9cQ60LEY+3n5HOvWH9PxmPtS+dTO17t+k/huQlyjEgb5Dyx1/TafTZezD6Wl1Vk/tJ/D/CG8ILwysbL/fvL/LV8UvFy673+2IPi7/X/43OKly48DwSeLJi8kfFS/Skmc+tH7x/hiT2WeB4+kLt+1p7Nj9Wz/vf6f/H0FHiUeomnTrFn+MQckf2C8d8q9aP5y+CNne/ew/pn+5WXr66Nv5eev1uv34tXDV8p/2ieo32D7QcoPy9eLfx66h/Nc3Y/Z/eX0vOrNN9m7b35sPG3Vr+c5979HvlH+0aMf3j2iVR8dObs997/Y06+z+q9/taGR1bv9be1+i3zP4UvDa+p+aztG6n6rf3Iyie8eGPvW/Ts94ec/H9pPr00P9/rT+NNyojfoYnjHfFv1A/k9z/ENxDe0fwvva9p+Cs539H+sPS+uvR83+v/4utRUV6TfN4Z/MV6k+Xu2G8+PaBE/g==
+  </data>
+ </layer>
+</map>

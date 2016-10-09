@@ -15,6 +15,7 @@
 #include "InputManager.h"
 #include <tmx/MapLoader.h>
 #include <string>
+#include "Player.h"
 
 class PlayState : public cgf::GameState
 {
@@ -43,23 +44,13 @@ class PlayState : public cgf::GameState
     private:
 
     static PlayState m_PlayState;
+    Player * player;
 
-    enum { RIGHT=0, LEFT, UP, DOWN };
-    std::string walkStates[4];
-    int currentDir;
-
-    int x, y;
-    int dirx, diry;
-
-    cgf::Sprite player;
 
     sf::RenderWindow* screen;
     cgf::InputManager* im;
 
     tmx::MapLoader* map;
-
-    sf::Font font;
-    sf::Text text;
 
     // Centers the camera on the player position
     void centerMapOnPlayer();

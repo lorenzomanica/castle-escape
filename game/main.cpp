@@ -21,6 +21,13 @@ int main(int argc, char **argv)
 
     game.changeState(PlayState::instance());
 
+    //Set Starter Zoom
+    sf::RenderWindow* screen = game.getScreen();
+    sf::View view = screen->getView();
+    view.zoom(0.625);
+    screen->setView(view);
+
+
 	while(game.isRunning())
 	{
 		game.handleEvents();

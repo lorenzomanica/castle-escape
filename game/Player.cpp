@@ -15,7 +15,11 @@ Player::Player(){
     currentDir = RIGHT;
 
     setPosition(40,100);
-    load("data/img/warrior.png",64,64,0,0,0,0,13,21,273);
+    load("data/img/warrior.png",
+        28,52,
+        36,12,
+        16,12,
+        13,21,273);
     loadAnimation("data/img/warrioranim.xml");
     setAnimation(walkStates[currentDir]);
     setAnimRate(30);
@@ -24,7 +28,7 @@ Player::Player(){
 }
 
 
-void Player::walk(int direction){
+void Player::walk(int direction, bool dash){
     dirx = diry = 0;
     int newDir = currentDir;
 
@@ -58,7 +62,14 @@ void Player::walk(int direction){
         }
         play();
     }
+    if( dash ){
+        setXspeed(300*dirx);
+        setYspeed(300*diry);
+        setAnimRate(60);
+    }else{
+        setAnimRate(30);
+        setXspeed(100*dirx);
+        setYspeed(100*diry);
+    }
 
-    setXspeed(100*dirx);
-    setYspeed(100*diry);
 }

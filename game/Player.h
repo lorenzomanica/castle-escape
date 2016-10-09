@@ -19,7 +19,7 @@ class Player : public cgf::Sprite
     int x, y;
     int currentDir;
 
-    void walk(int direction);
+    void walk(int direction, bool dash);
 
     Player();
 
