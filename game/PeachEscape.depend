@@ -582,3 +582,44 @@
 	"PlayState.h"
 	"InputManager.h"
 
+1475979425 source:/home/rafael/Estudo/Entretenimento Digital/castle-escape/game/main.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+	<cmath>
+	"Game.h"
+	"PlayState.h"
+
+1464627029 /home/rafael/Estudo/Entretenimento Digital/castle-escape/game/PlayState.h
+	"GameState.h"
+	"Sprite.h"
+	"InputManager.h"
+	<tmx/MapLoader.h>
+	<string>
+
+1475978189 source:/home/rafael/Estudo/Entretenimento Digital/castle-escape/game/PlayState.cpp
+	<iostream>
+	<cmath>
+	"Game.h"
+	"PlayState.h"
+	"InputManager.h"
+
+1475979425 source:/home/rafael/Estudo/Entretenimento Digital/castle-escape/game/src/main.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+	<cmath>
+	"Game.h"
+	"PlayState.h"
+
+1475984461 /home/rafael/Estudo/Entretenimento Digital/castle-escape/game/include/PlayState.h
+	"GameState.h"
+	"Sprite.h"
+	"InputManager.h"
+	<tmx/MapLoader.h>
+	<string>
+	"Player.h"
+
+1475983428 /home/rafael/Estudo/Entretenimento Digital/castle-escape/game/include/Player.h
+	<Sprite.h>
+

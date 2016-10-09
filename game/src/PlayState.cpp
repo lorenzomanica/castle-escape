@@ -1,10 +1,6 @@
-/*
- *  PlayState.cpp
- *  Normal "play" state
- *
- *  Created by Marcelo Cohen on 08/13.
- *  Copyright 2013 PUCRS. All rights reserved.
- *
+/**
+Peach Game By
+Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
 
 #include <iostream>
@@ -95,28 +91,23 @@ void PlayState::handleEvents(cgf::Game* game)
             game->quit();
     }
 
-    dirx = diry = 0;
-    int newDir = currentDir;
 
     if(im->testEvent("left")) {
-        dirx = -1;
-        newDir = LEFT;
+        player.move(LEFT);
     }
 
     if(im->testEvent("right")) {
-        dirx = 1;
-        newDir = RIGHT;
+        player.move(RIGHT);
     }
 
     if(im->testEvent("up")) {
-        diry = -1;
-        newDir = UP;
+        player.move(UP);
     }
 
     if(im->testEvent("down")) {
-        diry = 1;
-        newDir = DOWN;
+        player.move(DOWN);
     }
+
 
     if(im->testEvent("quit") || im->testEvent("rightclick"))
         game->quit();
@@ -133,26 +124,13 @@ void PlayState::handleEvents(cgf::Game* game)
         screen->setView(view);
     }
 
-    if(dirx == 0 && diry == 0) {
-        player.pause();
-    }
-    else {
-        if(currentDir != newDir) {
-            player.setAnimation(walkStates[newDir]);
-            currentDir = newDir;
-        }
-        player.play();
-    }
 
-    player.setXspeed(100*dirx);
-    player.setYspeed(100*diry);
 }
 
 void PlayState::update(cgf::Game* game)
 {
     screen = game->getScreen();
     checkCollision(2, game, &player);
-//    player.update(game->getUpdateInterval());
     centerMapOnPlayer();
 }
 

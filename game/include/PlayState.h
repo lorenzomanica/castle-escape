@@ -1,11 +1,8 @@
-/*
- *  PlayState.h
- *  Normal "play" state
- *
- *  Created by Marcelo Cohen on 08/13.
- *  Copyright 2013 PUCRS. All rights reserved.
- *
+/**
+Peach Game By
+Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
+
 
 #ifndef PLAY_STATE_H_
 #define PLAY_STATE_H_
@@ -15,6 +12,7 @@
 #include "InputManager.h"
 #include <tmx/MapLoader.h>
 #include <string>
+#include "Player.h"
 
 class PlayState : public cgf::GameState
 {
@@ -44,22 +42,12 @@ class PlayState : public cgf::GameState
 
     static PlayState m_PlayState;
 
-    enum { RIGHT=0, LEFT, UP, DOWN };
-    std::string walkStates[4];
-    int currentDir;
-
-    int x, y;
-    int dirx, diry;
-
-    cgf::Sprite player;
+    Player player;
 
     sf::RenderWindow* screen;
     cgf::InputManager* im;
 
     tmx::MapLoader* map;
-
-    sf::Font font;
-    sf::Text text;
 
     // Centers the camera on the player position
     void centerMapOnPlayer();

@@ -1,8 +1,6 @@
-/*
- * Exemplo de uso do framework de jogo
- *
- * Cria um jogo com 3 estados: "menu", "play" e "pause"
- *
+/**
+Peach Game By
+Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
 
 #include <iostream>
