@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="130" tilewidth="16" tileheight="16" nextobjectid="192">
- <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2">
-  <image source="blocks1.png" width="640" height="400"/>
-
-<tileset firstgid="80" name="TIBIA1" tilewidth="16" tileheight="16" tilecount="1024">
+ <tileset firstgid="1" name="TIBIA1" tilewidth="16" tileheight="16" tilecount="1024">
   <image source="TIBIA1.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="1025" name="TIBIA2" tilewidth="16" tileheight="16" tilecount="1024">
