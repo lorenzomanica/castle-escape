@@ -31,7 +31,7 @@ void PlayState::init()
 
     map = new tmx::MapLoader("data/maps");       // all maps/tiles will be read from data/maps
     // map->AddSearchPath("data/maps/tilesets"); // e.g.: adding more search paths for tilesets
-    map->Load("dungeon-tilesets2.tmx");
+    map->Load("labirinto.tmx");
 
     walkStates[0] = "walk-right";
     walkStates[1] = "walk-left";
