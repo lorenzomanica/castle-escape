@@ -111,11 +111,15 @@
 		<Linker>
 			<Add directory="../lib" />
 		</Linker>
-		<Unit filename="PlayState.cpp" />
-		<Unit filename="PlayState.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
+		<Unit filename="StateCastle.cpp" />
+		<Unit filename="StateCastle.h" />
+		<Unit filename="StateGarden.cpp" />
+		<Unit filename="StateGarden.h" />
+		<Unit filename="StateLose.cpp" />
+		<Unit filename="StateLose.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

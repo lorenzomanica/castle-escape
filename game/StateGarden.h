@@ -3,8 +3,8 @@ Peach Game By
 Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
 
-#ifndef PLAY_STATE_H_
-#define PLAY_STATE_H_
+#ifndef GARDEN_STATE_H_
+#define GARDEN_STATE_H_
 
 #include "GameState.h"
 #include "Sprite.h"
@@ -13,10 +13,7 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #include <string>
 #include "Player.h"
 
-#define START_TIMEOUT 90
-#define WALL_TILE 2
-
-class PlayState : public cgf::GameState
+class StateGarden : public cgf::GameState
 {
     public:
 
@@ -31,19 +28,19 @@ class PlayState : public cgf::GameState
     void draw(cgf::Game* game);
 
     // Implement Singleton Pattern
-    static PlayState* instance()
+    static StateGarden* instance()
     {
-        return &m_PlayState;
+        return &m_StateGarden;
     }
 
     protected:
-    PlayState() {}
+    StateGarden() {}
 
 
     private:
 
     //Singleton
-    static PlayState m_PlayState;
+    static StateGarden m_StateGarden;
 
     //Player
     Player * player;
@@ -51,30 +48,14 @@ class PlayState : public cgf::GameState
     //Map Loader
     tmx::MapLoader* map;
 
-    //Winning Lader
-    cgf::Sprite lader;
-
-    //Timer Control
-    time_t start, lastTimeChange;
-    sf::Font font;
-    sf::Text text;
-    int timeLeft;
-
-
     //Window Managment
     sf::RenderWindow* screen;
     cgf::InputManager* im;
 
-    void endGameWinning();
-
-    void endGameLosing();
 
     //Helper Methods
     void centerMapOnPlayer();
 
-    bool checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj);
-
-    sf::Uint16 getCellFromMap(uint8_t layernum, float x, float y);
 };
 
 #endif

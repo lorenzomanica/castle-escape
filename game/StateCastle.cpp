@@ -8,15 +8,17 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #include <sstream>
 
 #include "Game.h"
-#include "PlayState.h"
+#include "StateCastle.h"
 #include "InputManager.h"
+#include "StateGarden.h"
+#include "StateLose.h"
 
 
-PlayState PlayState::m_PlayState;
+StateCastle StateCastle::m_StateCastle;
 
 using namespace std;
 
-void PlayState::init()
+void StateCastle::init()
 {
     //Load Map
     map = new tmx::MapLoader("data/maps");
@@ -32,11 +34,11 @@ void PlayState::init()
     //Start Lader (Wining Object)
     lader.load("data/img/lader.png");
     sf::Vector2u tilesize = map->GetMapTileSize();
-    lader.setPosition(tilesize.x * 30, tilesize.y * 30);
+    lader.setPosition(tilesize.x * 30, tilesize.y * 31); //Set it to Tile(30,30)
 
     //Load Font
-    if (!font.loadFromFile("data/fonts/arial.ttf")) {
-        cout << "Cannot load arial.ttf font!" << endl;
+    if (!font.loadFromFile("data/fonts/DroidSans.ttf")) {
+        cout << "Cannot load DroidSans.ttf font!" << endl;
         exit(1);
     }
     text.setFont(font);
@@ -55,12 +57,12 @@ void PlayState::init()
     im->addKeyInput("space", sf::Keyboard::Space);
     im->addMouseInput("rightclick", sf::Mouse::Right);
 
-    cout << "PlayState: Init" << endl;
+    cout << "StateCastle: Init" << endl;
 }
 
 
 
-void PlayState::handleEvents(cgf::Game* game)
+void StateCastle::handleEvents(cgf::Game* game)
 {
     screen = game->getScreen();
     sf::View view = screen->getView();
@@ -93,7 +95,7 @@ void PlayState::handleEvents(cgf::Game* game)
 
 }
 
-void PlayState::update(cgf::Game* game)
+void StateCastle::update(cgf::Game* game)
 {
     //Get Window
     screen = game->getScreen();
@@ -113,28 +115,19 @@ void PlayState::update(cgf::Game* game)
 
     //Test End of Game -> LOSE -> Timer=0;
     if(seconds <= 0){
-        endGameLosing();
+        game->changeState(StateLose::instance());
     }
 
     //Test End of Game -> WIN -> Colision With Lader
     if( player->bboxCollision(lader) ){
-        endGameWinning();
+        game->changeState(StateGarden::instance());
+
     }
 
-
-
 }
 
-void PlayState::endGameWinning(){
-    pause();
-}
 
-void PlayState::endGameLosing(){
-    pause();
-
-}
-
-void PlayState::draw(cgf::Game* game)
+void StateCastle::draw(cgf::Game* game)
 {
     screen = game->getScreen();
     map->Draw(*screen);
@@ -146,26 +139,26 @@ void PlayState::draw(cgf::Game* game)
 
 
 
-void PlayState::cleanup()
+void StateCastle::cleanup()
 {
     delete map;
-    cout << "PlayState: Clean" << endl;
+    cout << "StateCastle: Clean" << endl;
 }
 
-void PlayState::pause()
+void StateCastle::pause()
 {
-    cout << "PlayState: Paused" << endl;
+    cout << "StateCastle: Paused" << endl;
 }
 
-void PlayState::resume()
+void StateCastle::resume()
 {
-    cout << "PlayState: Resumed" << endl;
+    cout << "StateCastle: Resumed" << endl;
 }
 
 
 
 // Centers the camera on the player position
-void PlayState::centerMapOnPlayer()
+void StateCastle::centerMapOnPlayer()
 {
     sf::View view = screen->getView();
     sf::Vector2u mapsize = map->GetMapSize();
@@ -197,7 +190,7 @@ void PlayState::centerMapOnPlayer()
 }
 
 // Checks collision between a sprite and a map layer
-bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
+bool StateCastle::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
 {
     int i, x1, x2, y1, y2;
     bool bump = false;
@@ -371,7 +364,7 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
 }
 
 // Get a cell GID from the map (x and y in global coords)
-sf::Uint16 PlayState::getCellFromMap(uint8_t layernum, float x, float y)
+sf::Uint16 StateCastle::getCellFromMap(uint8_t layernum, float x, float y)
 {
     auto layers = map->GetLayers();
     tmx::MapLayer& layer = layers[layernum];

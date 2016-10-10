@@ -582,13 +582,13 @@
 	"PlayState.h"
 	"InputManager.h"
 
-1476061869 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/main.cpp
+1476068509 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/main.cpp
 	<iostream>
 	<cstdlib>
 	<string>
 	<cmath>
 	"Game.h"
-	"PlayState.h"
+	"StateCastle.h"
 
 1464627029 /home/rafael/Estudo/Entretenimento Digital/peach/lib/CGF/include/Game.h
 	<SFML/Audio.hpp>
@@ -1092,7 +1092,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1476064948 /home/rafael/Estudo/Entretenimento Digital/peach/game/PlayState.h
+1476065383 /home/rafael/Estudo/Entretenimento Digital/peach/game/PlayState.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -1174,4 +1174,52 @@
 	"Game.h"
 	"PlayState.h"
 	"InputManager.h"
+
+1476068891 /home/rafael/Estudo/Entretenimento Digital/peach/game/StateCastle.h
+	"GameState.h"
+	"Sprite.h"
+	"InputManager.h"
+	<tmx/MapLoader.h>
+	<string>
+	"Player.h"
+
+1476068725 /home/rafael/Estudo/Entretenimento Digital/peach/game/StateGarden.h
+	"GameState.h"
+	"Sprite.h"
+	"InputManager.h"
+	<tmx/MapLoader.h>
+	<string>
+	"Player.h"
+
+1476068032 /home/rafael/Estudo/Entretenimento Digital/peach/game/StateLose.h
+	"GameState.h"
+	<string>
+
+1476067963 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateCastle.cpp
+	<iostream>
+	<cmath>
+	<ctime>
+	<sstream>
+	"Game.h"
+	"StateCastle.h"
+	"InputManager.h"
+	"StateGarden.h"
+	"StateLose.h"
+
+1476068460 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateGarden.cpp
+	<iostream>
+	<cmath>
+	<ctime>
+	<sstream>
+	"Game.h"
+	"StateGarden.h"
+	"InputManager.h"
+
+1476068885 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateLose.cpp
+	<iostream>
+	<cmath>
+	<ctime>
+	<sstream>
+	"Game.h"
+	"StateLose.h"
 
