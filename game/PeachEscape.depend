@@ -582,7 +582,7 @@
 	"PlayState.h"
 	"InputManager.h"
 
-1476049729 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/main.cpp
+1476061869 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/main.cpp
 	<iostream>
 	<cstdlib>
 	<string>
@@ -1092,7 +1092,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1476033165 /home/rafael/Estudo/Entretenimento Digital/peach/game/PlayState.h
+1476064948 /home/rafael/Estudo/Entretenimento Digital/peach/game/PlayState.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -1159,15 +1159,18 @@
 	<math.h>
 	<SFML/Graphics/Rect.hpp>
 
-1476044096 /home/rafael/Estudo/Entretenimento Digital/peach/game/Player.h
+1476062400 /home/rafael/Estudo/Entretenimento Digital/peach/game/Player.h
 	<Sprite.h>
+	"InputManager.h"
 
-1476048134 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/Player.cpp
+1476062382 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/Player.cpp
 	"Player.h"
 
-1476049516 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/PlayState.cpp
+1476064929 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/PlayState.cpp
 	<iostream>
 	<cmath>
+	<ctime>
+	<sstream>
 	"Game.h"
 	"PlayState.h"
 	"InputManager.h"

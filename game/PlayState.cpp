@@ -1,17 +1,16 @@
-/*
- *  PlayState.cpp
- *  Normal "play" state
- *
- *  Created by Marcelo Cohen on 08/13.
- *  Copyright 2013 PUCRS. All rights reserved.
- *
+/**
+Peach Game By
+Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
-
 #include <iostream>
 #include <cmath>
+#include <ctime>
+#include <sstream>
+
 #include "Game.h"
 #include "PlayState.h"
 #include "InputManager.h"
+
 
 PlayState PlayState::m_PlayState;
 
@@ -19,17 +18,34 @@ using namespace std;
 
 void PlayState::init()
 {
-
-    map = new tmx::MapLoader("data/maps");       // all maps/tiles will be read from data/maps
-    // map->AddSearchPath("data/maps/tilesets"); // e.g.: adding more search paths for tilesets
-    //map->Load("dungeon-tilesets2.tmx");
+    //Load Map
+    map = new tmx::MapLoader("data/maps");
     map->Load("castle.tmx");
-    //map->Load("mundi.tmx");
 
+    //Start Player
+    start = time(0);
+    lastTimeChange = time(0);
     player = new Player();
+    timeLeft = START_TIMEOUT;
 
+
+    //Start Lader (Wining Object)
+    lader.load("data/img/lader.png");
+    sf::Vector2u tilesize = map->GetMapTileSize();
+    lader.setPosition(tilesize.x * 30, tilesize.y * 30);
+
+    //Load Font
+    if (!font.loadFromFile("data/fonts/arial.ttf")) {
+        cout << "Cannot load arial.ttf font!" << endl;
+        exit(1);
+    }
+    text.setFont(font);
+    text.setCharacterSize(24); // in pixels
+    text.setColor(sf::Color::Yellow);
+    text.setStyle(sf::Text::Bold);
+
+    //Configure Controls Mapping
     im = cgf::InputManager::instance();
-
     im->addKeyInput("left", sf::Keyboard::Left);
     im->addKeyInput("right", sf::Keyboard::Right);
     im->addKeyInput("up", sf::Keyboard::Up);
@@ -39,12 +55,96 @@ void PlayState::init()
     im->addKeyInput("space", sf::Keyboard::Space);
     im->addMouseInput("rightclick", sf::Mouse::Right);
 
-    // Camera control
-    im->addKeyInput("zoomin", sf::Keyboard::Z);
-    im->addKeyInput("zoomout", sf::Keyboard::X);
-
     cout << "PlayState: Init" << endl;
 }
+
+
+
+void PlayState::handleEvents(cgf::Game* game)
+{
+    screen = game->getScreen();
+    sf::View view = screen->getView();
+    sf::Event event;
+
+    while (screen->pollEvent(event))
+    {
+        if(event.type == sf::Event::Closed)
+            game->quit();
+    }
+
+    //Player Control Events
+    player->control(im);
+
+    //Remove time on Dashing
+    if(im->testEvent("space")){
+        if( difftime(time(0), lastTimeChange ) > 1){
+            timeLeft--;
+            lastTimeChange = time(0);
+        }
+    }
+
+    //Generic Control Events
+    if(im->testEvent("quit") || im->testEvent("rightclick"))
+        game->quit();
+
+    if(im->testEvent("stats"))
+        game->toggleStats();
+
+
+}
+
+void PlayState::update(cgf::Game* game)
+{
+    //Get Window
+    screen = game->getScreen();
+
+    //Center Window on Player
+    centerMapOnPlayer();
+
+    //Check Colisions With Walls
+    cgf::Sprite * p = player;
+    checkCollision(WALL_TILE, game, p);
+
+    //Update Timer
+    int seconds = timeLeft - difftime(time(0), start);
+    ostringstream os;
+    os << seconds;
+    text.setString(os.str());
+
+    //Test End of Game -> LOSE -> Timer=0;
+    if(seconds <= 0){
+        endGameLosing();
+    }
+
+    //Test End of Game -> WIN -> Colision With Lader
+    if( player->bboxCollision(lader) ){
+        endGameWinning();
+    }
+
+
+
+}
+
+void PlayState::endGameWinning(){
+    pause();
+}
+
+void PlayState::endGameLosing(){
+    pause();
+
+}
+
+void PlayState::draw(cgf::Game* game)
+{
+    screen = game->getScreen();
+    map->Draw(*screen);
+    screen->draw(*player);
+    screen->draw(text);
+    screen->draw(lader);
+
+}
+
+
 
 void PlayState::cleanup()
 {
@@ -62,75 +162,9 @@ void PlayState::resume()
     cout << "PlayState: Resumed" << endl;
 }
 
-void PlayState::handleEvents(cgf::Game* game)
-{
-    screen = game->getScreen();
-    sf::View view = screen->getView(); // gets the view
-    sf::Event event;
-
-    while (screen->pollEvent(event))
-    {
-        if(event.type == sf::Event::Closed)
-            game->quit();
-    }
 
 
-    if(im->testEvent("left")) {
-        player->walk(Player::LEFT, im->testEvent("space"));
-    }
-
-    else if(im->testEvent("right")) {
-        player->walk(Player::RIGHT, im->testEvent("space"));
-    }
-
-    else if(im->testEvent("up")) {
-        player->walk(Player::UP, im->testEvent("space"));
-    }
-
-    else if(im->testEvent("down")) {
-        player->walk(Player::DOWN, im->testEvent("space"));
-    }
-
-    else{
-        player->walk(-1, false);
-
-    }
-
-    if(im->testEvent("quit") || im->testEvent("rightclick"))
-        game->quit();
-
-    if(im->testEvent("stats"))
-        game->toggleStats();
-
-    /*
-    if(im->testEvent("zoomin")) {
-        view.zoom(1.01);
-        screen->setView(view);
-    }
-    else if(im->testEvent("zoomout")) {
-        view.zoom(0.99);
-        screen->setView(view);
-    }*/
-
-}
-
-void PlayState::update(cgf::Game* game)
-{
-    screen = game->getScreen();
-    cgf::Sprite * p = player;
-    checkCollision(3, game, p);
-    centerMapOnPlayer();
-
-}
-
-void PlayState::draw(cgf::Game* game)
-{
-    screen = game->getScreen();
-    map->Draw(*screen);          // draw all layers
-    //map->Draw(*screen, 1);     // draw only the second layer
-    screen->draw(*player);
-}
-
+// Centers the camera on the player position
 void PlayState::centerMapOnPlayer()
 {
     sf::View view = screen->getView();
@@ -156,9 +190,13 @@ void PlayState::centerMapOnPlayer()
 
     sf::Vector2f center(panX,panY);
     view.setCenter(center);
+
+    text.setPosition(panX-(800/4), panY-(600/4));
+
     screen->setView(view);
 }
 
+// Checks collision between a sprite and a map layer
 bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
 {
     int i, x1, x2, y1, y2;

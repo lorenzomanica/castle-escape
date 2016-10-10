@@ -1,8 +1,6 @@
-/*
- * Exemplo de uso do framework de jogo
- *
- * Cria um jogo com 3 estados: "menu", "play" e "pause"
- *
+/**
+Peach Game By
+Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
 
 #include <iostream>
@@ -24,7 +22,7 @@ int main(int argc, char **argv)
     //Set Starter Zoom
     sf::RenderWindow* screen = game.getScreen();
     sf::View view = screen->getView();
-    view.zoom(0.625);
+    view.zoom(0.5);
     screen->setView(view);
 
 
