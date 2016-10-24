@@ -24,6 +24,11 @@ void StateCastle::init()
     map = new tmx::MapLoader("data/maps");
     map->Load("castle.tmx");
 
+    music.openFromFile("data/audio/Portal2-02-Halls_Of_Science_4.ogg");
+    music.setVolume(30);  // 30% do volume máximo
+    music.setLoop(true);  // modo de loop: repete continuamente.
+    music.play();
+
     //Start Player
     start = time(0);
     lastTimeChange = time(0);

@@ -62,6 +62,9 @@ class StateCastle : public cgf::GameState
     sf::Text text;
     int timeLeft;
 
+    //Music Player
+    sf::Music music;
+
     //Window Managment
     sf::RenderWindow* screen;
     cgf::InputManager* im;
