@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="CASTLE1" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="CASTLE1.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxbw8DAsIaKeB+V8blRPIpH8SgexYMSAwAuJz4I
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzzYMAP5AnIIwMPItSQYh4xQJ/K5o2CUTAKRsEoIA4AAOm7AP4=
+  </data>
+ </layer>
+</map>

@@ -1175,7 +1175,7 @@
 	"PlayState.h"
 	"InputManager.h"
 
-1476068891 /home/rafael/Estudo/Entretenimento Digital/peach/game/StateCastle.h
+1476132284 /home/rafael/Estudo/Entretenimento Digital/peach/game/StateCastle.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -1195,7 +1195,7 @@
 	"GameState.h"
 	<string>
 
-1476067963 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateCastle.cpp
+1476068962 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateCastle.cpp
 	<iostream>
 	<cmath>
 	<ctime>
@@ -1215,7 +1215,7 @@
 	"StateGarden.h"
 	"InputManager.h"
 
-1476068885 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateLose.cpp
+1476131606 source:/home/rafael/Estudo/Entretenimento Digital/peach/game/StateLose.cpp
 	<iostream>
 	<cmath>
 	<ctime>
