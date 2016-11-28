@@ -1733,7 +1733,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1477340630 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateCastle.h
+1480304774 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateCastle.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -1800,14 +1800,14 @@
 	<math.h>
 	<SFML/Graphics/Rect.hpp>
 
-1476062400 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/Player.h
+1480301476 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/Player.h
 	<Sprite.h>
 	"InputManager.h"
 
-1476062382 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/Player.cpp
+1480301476 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/Player.cpp
 	"Player.h"
 
-1480292949 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateCastle.cpp
+1480304505 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateCastle.cpp
 	<iostream>
 	<cmath>
 	<ctime>
@@ -1826,8 +1826,10 @@
 	<string>
 	"Player.h"
 
-1476068032 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateLose.h
+1480304545 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateLose.h
+	"Sprite.h"
 	"GameState.h"
+	"InputManager.h"
 	<string>
 
 1476068460 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateGarden.cpp
@@ -1839,13 +1841,14 @@
 	"StateGarden.h"
 	"InputManager.h"
 
-1480292739 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateLose.cpp
+1480304706 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StateLose.cpp
 	<iostream>
 	<cmath>
 	<ctime>
 	<sstream>
 	"Game.h"
 	"StateLose.h"
+	"StateCastle.h"
 
 1480295430 /media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StatePreCastle.h
 	"Sprite.h"
@@ -1853,7 +1856,7 @@
 	"GameState.h"
 	<string>
 
-1480295426 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StatePreCastle.cpp
+1480295534 source:/media/rafael/1AF07A5CF07A3E57/Data/Google Drive/Estudos/Entretenimento Digital/peach/game/StatePreCastle.cpp
 	<iostream>
 	<cmath>
 	<ctime>

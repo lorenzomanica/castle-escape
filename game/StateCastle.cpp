@@ -24,6 +24,7 @@ void StateCastle::init()
     map = new tmx::MapLoader("data/maps");
     map->Load("castle.tmx");
 
+    //Load Music
     music.openFromFile("data/audio/Portal2-02-Halls_Of_Science_4.ogg");
     music.setVolume(30);  // 30% do volume máximo
     music.setLoop(true);  // modo de loop: repete continuamente.
@@ -120,6 +121,7 @@ void StateCastle::update(cgf::Game* game)
 
     //Test End of Game -> LOSE -> Timer=0;
     if(seconds <= 0){
+        music.stop();
         game->changeState(StateLose::instance());
     }
 

@@ -6,7 +6,7 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #ifndef CASTLE_STATE_H_
 #define CASTLE_STATE_H_
 
-#define START_TIMEOUT 90
+#define START_TIMEOUT 100
 #define WALL_TILE 2
 
 #include "GameState.h"

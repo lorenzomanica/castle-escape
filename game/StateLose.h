@@ -6,7 +6,9 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #ifndef LOSE_STATE_H_
 #define LOSE_STATE_H_
 
+#include "Sprite.h"
 #include "GameState.h"
+#include "InputManager.h"
 #include <string>
 
 class StateLose : public cgf::GameState
@@ -38,13 +40,19 @@ class StateLose : public cgf::GameState
     //Singleton
     static StateLose m_StateLose;
 
+    //Image
+    cgf::Sprite image;
 
+    //Text
     sf::Font font;
     sf::Text text;
 
+    //Music Player
+    sf::Music music;
 
     //Window Managment
     sf::RenderWindow* screen;
+    cgf::InputManager* im;
 
 };
 
