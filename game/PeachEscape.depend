@@ -2425,7 +2425,7 @@
 	<Sprite.h>
 	"InputManager.h"
 
-1480355194 source:/home/lmanica/workspace/pucrs/ed/castle-escape/game/StateCastle.cpp
+1480357577 source:/home/lmanica/workspace/pucrs/ed/castle-escape/game/StateCastle.cpp
 	<iostream>
 	<cmath>
 	<ctime>
@@ -2436,7 +2436,7 @@
 	"StateGarden.h"
 	"StateLose.h"
 
-1480354679 /home/lmanica/workspace/pucrs/ed/castle-escape/game/StateCastle.h
+1480357809 /home/lmanica/workspace/pucrs/ed/castle-escape/game/StateCastle.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -2490,7 +2490,7 @@
 	"StateGarden.h"
 	"InputManager.h"
 
-1480351890 source:/home/lmanica/workspace/pucrs/ed/castle-escape/game/StateLose.cpp
+1480358943 source:/home/lmanica/workspace/pucrs/ed/castle-escape/game/StateLose.cpp
 	<iostream>
 	<cmath>
 	<ctime>

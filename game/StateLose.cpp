@@ -20,8 +20,8 @@ void StateLose::init()
 {
     //Load Image
     image.load("data/img/peach_dead.png");
-    image.setScale(0.5,0.5);
-    image.setPosition(0,275);
+    image.setScale(1, 1);
+    image.setPosition(0, 0);
 
     //Load Music
     music.openFromFile("data/audio/funebre_march.ogg");
@@ -47,6 +47,8 @@ void StateLose::init()
     im->addKeyInput("space", sf::Keyboard::Space);
     im->addKeyInput("quit", sf::Keyboard::Escape);
     im->addMouseInput("rightclick", sf::Mouse::Right);
+    im->addKeyInput("zoomin", sf::Keyboard::Z);
+    im->addKeyInput("zoomout", sf::Keyboard::X);
 }
 
 
@@ -71,6 +73,15 @@ void StateLose::handleEvents(cgf::Game* game)
 
     if(im->testEvent("quit") || im->testEvent("rightclick"))
         game->quit();
+
+    if(im->testEvent("zoomin")) {
+        view.zoom(1.01);
+        screen->setView(view);
+    }
+    else if(im->testEvent("zoomout")) {
+        view.zoom(0.99);
+        screen->setView(view);
+    }
 
 }
 
