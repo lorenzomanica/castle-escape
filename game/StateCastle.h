@@ -6,7 +6,7 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #ifndef CASTLE_STATE_H_
 #define CASTLE_STATE_H_
 
-#define START_TIMEOUT 100
+#define START_TIMEOUT 300
 #define WALL_TILE 2
 
 #include "GameState.h"
@@ -15,6 +15,7 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #include <tmx/MapLoader.h>
 #include <string>
 #include "Player.h"
+#include "Enemy.h"
 
 
 
@@ -49,6 +50,8 @@ class StateCastle : public cgf::GameState
 
     //Player
     Player * player;
+
+    std::vector <Enemy*> enemies;
 
     //Map Loader
     tmx::MapLoader* map;

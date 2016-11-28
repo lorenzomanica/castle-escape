@@ -55,7 +55,7 @@ void StateGarden::handleEvents(cgf::Game* game)
     }
 
     //Player Control Events
-    //player->control(im);
+    player->control(im);
 
     //Generic Control Events
     if(im->testEvent("quit") || im->testEvent("rightclick"))

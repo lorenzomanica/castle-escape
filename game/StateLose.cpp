@@ -21,7 +21,7 @@ void StateLose::init()
     //Load Image
     image.load("data/img/peach_dead.png");
     image.setScale(0.5,0.5);
-    //image.setPosition(0,0);
+    image.setPosition(0,275);
 
     //Load Music
     music.openFromFile("data/audio/funebre_march.ogg");
@@ -45,6 +45,8 @@ void StateLose::init()
     //Configure Controls Mapping
     im = cgf::InputManager::instance();
     im->addKeyInput("space", sf::Keyboard::Space);
+    im->addKeyInput("quit", sf::Keyboard::Escape);
+    im->addMouseInput("rightclick", sf::Mouse::Right);
 }
 
 
@@ -66,6 +68,9 @@ void StateLose::handleEvents(cgf::Game* game)
         music.stop();
         game->changeState(StateCastle::instance());
     }
+
+    if(im->testEvent("quit") || im->testEvent("rightclick"))
+        game->quit();
 
 }
 

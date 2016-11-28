@@ -3,17 +3,15 @@ Peach Game By
 Lucas Ranzi, Lorenzo Manica e Rafael Julião
  */
 
-#ifndef PRE_CASTLE_STATE_H_
-#define PRE_CASTLE_STATE_H_
-
-#define SCENE_TIME_SECONDS 5
+#ifndef INTRO1_H
+#define INTRO1_H
 
 #include "Sprite.h"
 #include "InputManager.h"
 #include "GameState.h"
 #include <string>
 
-class StatePreCastle : public cgf::GameState
+class Intro1 : public cgf::GameState
 {
     public:
 
@@ -43,14 +41,10 @@ class StatePreCastle : public cgf::GameState
     static StatePreCastle m_StatePreCastle;
     time_t start;
     int STATE;
-
     cgf::Sprite image;
 
     sf::Font font;
     sf::Text text;
-
-    //Music Player
-    sf::Music music;
 
     //Window Managment
     sf::RenderWindow* screen;
@@ -58,4 +52,4 @@ class StatePreCastle : public cgf::GameState
 
 };
 
-#endif
+#endif // INTRO1_H

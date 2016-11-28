@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	game.init("Castle Escape: Peach on the run!",800,600,false);
 
     game.changeState(StatePreCastle::instance());
+    //game.changeState(StateLose::instance());
 
     //Set Starter Zoom
     sf::RenderWindow* screen = game.getScreen();

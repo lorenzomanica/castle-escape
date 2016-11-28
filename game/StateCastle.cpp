@@ -36,6 +36,16 @@ void StateCastle::init()
     player = new Player();
     timeLeft = START_TIMEOUT;
 
+    // Start enemies
+    std::vector<Enemy*>::iterator it;
+    //it = enemies.begin();
+    it = enemies.insert(it, new Enemy(160, 540, HORIZONTAL_MOVE, 160, 540, 580, 540));
+    it = enemies.insert(it, new Enemy(40, 420, VERTICAL_MOVE, 40, 420, 40, 930));
+    it = enemies.insert(it, new Enemy(680, 290, HORIZONTAL_MOVE, 680, 290, 1080, 290));
+    it = enemies.insert(it, new Enemy(1840, 150, VERTICAL_MOVE, 1840, 150, 1840, 290));
+    it = enemies.insert(it, new Enemy(1470, 930, HORIZONTAL_MOVE, 1070, 930, 1470, 930));
+    it = enemies.insert(it, new Enemy(810, 420, VERTICAL_MOVE, 810, 420, 810, 800));
+
 
     //Start Lader (Wining Object)
     lader.load("data/img/lader.png");
@@ -63,6 +73,9 @@ void StateCastle::init()
     im->addKeyInput("space", sf::Keyboard::Space);
     im->addMouseInput("rightclick", sf::Mouse::Right);
 
+    im->addKeyInput("zoomin", sf::Keyboard::Z);
+    im->addKeyInput("zoomout", sf::Keyboard::X);
+
     cout << "StateCastle: Init" << endl;
 }
 
@@ -89,6 +102,15 @@ void StateCastle::handleEvents(cgf::Game* game)
             timeLeft--;
             lastTimeChange = time(0);
         }
+    }
+
+    if(im->testEvent("zoomin")) {
+        view.zoom(1.01);
+        screen->setView(view);
+    }
+    else if(im->testEvent("zoomout")) {
+        view.zoom(0.99);
+        screen->setView(view);
     }
 
     //Generic Control Events
@@ -131,6 +153,24 @@ void StateCastle::update(cgf::Game* game)
 
     }
 
+    bool collidded = false;
+    vector<Enemy*>::iterator it;
+
+    for (it=enemies.begin(); it < enemies.end(); it++) {
+        Enemy *e = *it;
+
+        if (player->bboxCollision(*e))
+            collidded = true;
+
+        e->updatePosition();
+        e->update(game->getUpdateInterval(), false);
+    }
+
+    if (collidded) {
+        music.stop();
+        game->changeState(StateLose::instance());
+    }
+
 }
 
 
@@ -142,6 +182,11 @@ void StateCastle::draw(cgf::Game* game)
     screen->draw(text);
     screen->draw(lader);
 
+    vector<Enemy*>::iterator it;
+    for (it=enemies.begin(); it < enemies.end(); it++) {
+        Enemy *e = *it;
+        screen->draw(*e);
+    }
 }
 
 
@@ -173,6 +218,8 @@ void StateCastle::centerMapOnPlayer()
     viewsize.x /= 2;
     viewsize.y /= 2;
     sf::Vector2f pos = player->getPosition();
+
+    cout << pos.x << " " << pos.y << "\n";
 
     float panX = viewsize.x; // minimum pan
     if(pos.x >= viewsize.x)

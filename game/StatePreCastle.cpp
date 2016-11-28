@@ -32,17 +32,23 @@ void StatePreCastle::init()
     image.setPosition(200,150);
     STATE = 0;
 
+    //Load Music
+    music.openFromFile("data/audio/funebre_march.ogg");
+    music.setVolume(50);  // 30% do volume máximo
+    music.setLoop(true);  // modo de loop: repete continuamente.
+    music.play();
+
     //Configure Controls Mapping
     im = cgf::InputManager::instance();
     im->addKeyInput("right", sf::Keyboard::Right);
     im->addKeyInput("space", sf::Keyboard::Space);
 
     text.setFont(font);
-    text.setCharacterSize(20); // in pixels
+    text.setCharacterSize(16); // in pixels
     text.setColor(sf::Color::White);
     text.setPosition(220,360);
 
-    text.setString("The Princess Peach was kidnapped\nby the evil vilain named Bowser!");
+    text.setString("Princess Peach was kidnapped by the evil\nvilain named Bowser!");
     cout << "StatePreCastle: Init" << endl;
 }
 
@@ -60,7 +66,8 @@ void StatePreCastle::handleEvents(cgf::Game* game)
             game->quit();
     }
 
-    if(im->testEvent("space") || im->testEvent("right") ){
+    if(im->testEvent("space")){
+        music.stop();
         game->changeState(StateCastle::instance());
     }
 
@@ -72,15 +79,12 @@ void StatePreCastle::update(cgf::Game* game)
     if( difftime(time(0), start) > SCENE_TIME_SECONDS && STATE == 0){
         STATE = 1;
         image.load("data/img/kidnapped_peach.png");
-        text.setString("She was keeped prisioner in Bowser\ngiant castle for 30 years.");
+        text.setString("She was kept prisioner in Bowser's giant\n and cold castle for 30 years.");
     }
     if( difftime(time(0), start) > (2*SCENE_TIME_SECONDS) && STATE == 1 ){
         STATE = 2;
         image.load("data/img/mario_dead.png");
-        text.setString("After several atemps Mario end\nup dead. Now Peach need to\nescape the castle by herself!");
-    }
-    if( difftime(time(0), start) > (3*SCENE_TIME_SECONDS) ){
-        game->changeState(StateCastle::instance());
+        text.setString("After several atemps Mario end up dead.\nNow Peach need to escape by herself!\nPress SPACE to start");
     }
 }
 
