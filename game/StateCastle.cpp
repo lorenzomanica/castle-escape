@@ -42,8 +42,8 @@ void StateCastle::init()
     lader.setPosition(tilesize.x * 30, tilesize.y * 31); //Set it to Tile(30,30)
 
     //Load Font
-    if (!font.loadFromFile("data/fonts/DroidSans.ttf")) {
-        cout << "Cannot load DroidSans.ttf font!" << endl;
+    if (!font.loadFromFile("data/fonts/freepixel.ttf")) {
+        cout << "Cannot load freepixel.ttf font!" << endl;
         exit(1);
     }
     text.setFont(font);

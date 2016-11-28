@@ -9,7 +9,7 @@ Lucas Ranzi, Lorenzo Manica e Rafael Julião
 #include <cmath>
 
 #include "Game.h"
-#include "StateCastle.h"
+#include "StatePreCastle.h"
 
 int main(int argc, char **argv)
 {
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
 	game.init("Castle Escape: Peach on the run!",800,600,false);
 
-    game.changeState(StateCastle::instance());
+    game.changeState(StatePreCastle::instance());
 
     //Set Starter Zoom
     sf::RenderWindow* screen = game.getScreen();
